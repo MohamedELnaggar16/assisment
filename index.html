@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zoom Frame Then Scroll</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Tinos&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+        overflow-x: hidden;
+        font-family: "Jersey 25", sans-serif;
+        font-weight: 400;
+        font-style:normal ;
+      }
+      
+    
+
+    .intro-section {
+      height: 300vh; /* extended to allow space for second text */
+      position: relative;
+      background-color: #486985;
+    }
+
+    .zoom-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .zoom-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .intro-text,
+    .intro-text-2,
+    .intro-text-2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 2;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      font-size: 3rem;
+      opacity: 1;
+    }
+
+    .intro-text-2 {
+      opacity: 0; /* Initially hidden */
+    }
+
+    .intro-text-3 {
+      opacity: 0; /* Initially hidden */
+    }
+
+    .content-section {
+      background: white;
+      padding: 3rem;
+      height: 150vh;
+      z-index: 2;
+      position: relative;
+    }
+
+    .yellow-color {
+      color: yellow;
+    }
+
+    .intro-text-2,
+    .intro-text-3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 80%;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      font-size: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .column {
+      width: 45%;
+      opacity: 0;
+    }
+    
+    .left-col {
+      transform: translate(-100px, -100px);
+    }
+    
+    .right-col {
+      transform: translate(100px, -100px);
+    }
+    .font-size-intro{
+      font-size: 20px;
+      text-align: left;
+    }
+ .aboutUs{
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ }
+ .fontSizeOfAboutUsHead{
+  font-size: 150px !important;
+  text-align: center !important;
+ }
+    
+  </style>
+</head>
+<body>
+
+  <section class="intro-section position-relative">
+    <div class="zoom-container">
+      <img src="../3/images/pngg.png" class="zoom-image" alt="Background Zoom">
+      
+      <!-- First Intro Text -->
+      <div class="intro-text">
+        <img src="../3/images/logo.png" alt="">
+        <p> We make it simple but <span class="yellow-color">significant</span></p>
+      </div>
+
+      <!-- Second Intro Text -->
+      <div class="intro-text-2">
+        <div class="column left-col">
+          <p class="font-size-intro">You bring the vision, we bring it to life — with clarity, care, and creativity</p>
+          <h3 class="font-size-intro py-3 fw-bold">Who Are We ?</h3>
+          <p class="font-size-intro fw-light">We’re MediaZone — a full-service marketing agency built to move brands forward. From bold ideas to effective execution, we help you grow, connect, and stand out where it matters most.</p>
+
+        </div>
+        <div class="column right-col">
+          <p class="font-size-intro yellow-color">We walk with your idea from the first spark to the final </p>
+          <p class="font-size-intro"><span class="yellow-color">launch</span> Your 360° partner in marketing — here for every idea, every step, every win. </p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class=" intro-text-3 aboutUs pt-5 mt-5">
+    <h2 class="fontSizeOfAboutUsHead mx-auto ">About Us </h2>
+  </section>
+<section>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis, quibusdam. Quo officia neque eveniet nihil laborum ullam pariatur, aliquid sit exercitationem natus facere. Veniam facilis molestias est deserunt nisi esse nemo neque magnam fugiat animi fugit, eum facere atque error molestiae sapiente repellendus libero id ea sunt! Rem, inventore perferendis.
+</section>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Zoom effect on the image
+    gsap.to(".zoom-image", {
+      scale: 2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".intro-section",
+        start: "top top",
+        end: "100% top",
+        scrub: true
+      }
+    });
+
+    // Fade out first intro text
+    gsap.to(".intro-text", {
+      y: -200,
+      opacity: 0,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".intro-section",
+        start: "33% top",
+        end: "50% top",
+        scrub: true
+      }
+    });
+
+    // Fade in second intro text
+    gsap.to(".intro-text-2", {
+      y: 0,
+      opacity: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".intro-section",
+        start: "50% top",
+        end: "66% top",
+        scrub: true
+      }
+    });
+
+        // Fade in third intro text
+        gsap.to(".intro-text-3", {
+          y: 0,
+          opacity: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".intro-section",
+            start: "100% bottom",
+            end: "10% bottom",
+            scrub: true
+          }
+        });
+
+            // Fade in fourth intro text
+            gsap.to(".intro-text-4", {
+              y: 0,
+              opacity: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".intro-section",
+                start: "50% top",
+                end: "90% top",
+                scrub: true
+              }
+            });
+
+
+
+// Fade in container (intro-text-2)
+gsap.to(".intro-text-2", {
+  opacity: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "50% top",
+    end: "66% top",
+    scrub: true
+  }
+
+  
+});
+
+// Fade in container (intro-text-3)
+gsap.to(".intro-text-3", {
+  opacity: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "100% bottom",
+    end: "10% bottom",
+    scrub: true
+  }
+
+  
+});
+
+// Fade in container (intro-text-4)
+gsap.to(".intro-text-4", {
+  opacity: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "50% top",
+    end: "90% top",
+    scrub: true
+  }
+
+  
+});
+// Animate left column from upper-left to center-left
+gsap.to(".left-col", {
+  x: 0,
+  y: 0,
+  opacity: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "50% top",
+    end: "66% top",
+    scrub: true
+  }
+});
+
+// Animate right column from upper-right to center-right
+gsap.to(".right-col", {
+  x: 0,
+  y: 0,
+  opacity: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "50% top",
+    end: "66% top",
+    scrub: true
+  }
+});
+
+
+
+
+  </script>
+<!-- Bootstrap JS Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
