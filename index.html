@@ -73,8 +73,7 @@
 
     .yellow-color {
       color: yellow;
-            font-size: 30px;
-
+      font-size: 30px;
     }
 
     .intro-text-2 {
@@ -122,36 +121,90 @@
       font-size: 100px;
       text-align: center;
     }
-    .font-size-intro{
+
+    .font-size-intro {
       color: white !important;
       font-size: 30px;
     }
-    .gray-color
-    {
+
+    .gray-color {
       color: #BBC6D0;
       font-size: 20px;
     }
-    
 
-  .aboutUssec {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  z-index: 2;
-  color: white;
-  text-align: center;
-  width: 100%;
-}
+    .aboutUssec {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      z-index: 2;
+      color: white;
+      text-align: center;
+      width: 100%;
+    }
 
-.fontSizeOfAboutUsHead {
-  font-size: 200px;
-  color: white !important;
-}
+    .fontSizeOfAboutUsHead {
+      font-size: 200px;
+      color: white !important;
+    }
 
+    /* Responsive styles for mobile */
+    @media (max-width: 768px) {
+      .intro-text {
+        font-size: 2rem;
+      }
 
+      .intro-text-2 {
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+        max-width: 100%;
+      }
 
+      .column {
+        width: 100%;
+        opacity: 1;
+      }
+
+      .left-col, .right-col {
+        transform: translate(0, 0);
+      }
+
+      .font-size-intro {
+        font-size: 1rem;
+      }
+
+      .fontSizeOfAboutUsHead {
+        font-size: 100px;
+      }
+
+      .aboutUssec {
+        bottom: 0%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .intro-text {
+        font-size: 1.5rem;
+      }
+
+      .yellow-color {
+        font-size: 24px;
+      }
+
+      .intro-text-2 {
+        font-size: 1rem;
+      }
+
+      .fontSizeOfAboutUsHead {
+        font-size: 60px;
+      }
+
+      .aboutUssec {
+        bottom: 10%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -187,7 +240,7 @@
     </div>
   </section>
 
-  <section class="my-5 py-5 ">
+  <section class="my-5 py-5">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus saepe asperiores, nemo a sit earum? Quis ab officia eveniet illo, officiis explicabo ad perferendis veniam quidem numquam! Nulla error dolore earum perferendis in facere incidunt totam, maxime similique laborum nemo adipisci id velit obcaecati vitae ab perspiciatis accusamus voluptas temporibus!</p>
   </section>
 
@@ -195,14 +248,14 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // Zoom background
-      gsap.to(".zoom-bg", {
+    gsap.to(".zoom-bg", {
       scale: 2,
       ease: "power2.out",
       scrollTrigger: {
-      trigger: ".intro-section",
-      start: "top top",
-      end: "100% top", 
-      scrub: true
+        trigger: ".intro-section",
+        start: "top top",
+        end: "100% top", 
+        scrub: true
       }
     });
 
@@ -231,14 +284,14 @@
 
     // Fade in About Us section after intro-text-2
     gsap.to(".aboutUssec", {
-    opacity: 1,
-    scrollTrigger: {
-    trigger: ".intro-section",
-    start: "66% top", // after .intro-text-2 starts
-    end: "80% top",
-    scrub: true
-  }
-});
+      opacity: 1,
+      scrollTrigger: {
+        trigger: ".intro-section",
+        start: "66% top", // after .intro-text-2 starts
+        end: "80% top",
+        scrub: true
+      }
+    });
 
     gsap.to(".left-col", {
       x: 0,
