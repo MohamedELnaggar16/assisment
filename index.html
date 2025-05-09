@@ -205,6 +205,79 @@
         bottom: 10%;
       }
     }
+
+
+
+    .button-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* ensures no accidental interaction before animation */
+}
+
+.custom-btn {
+  position: absolute;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  font-weight: bold;
+}
+
+.btn1 {
+  background-color: red;
+  color: white;
+  top: 25%;
+  left: 5%;
+  border-radius: 50px;
+}
+
+.btn2 {
+  background-color: blue;
+  color: white;
+  top: 35%;
+  left: 10%;
+    border-radius: 50px;
+
+}
+
+.btn3 {
+  background-color: yellow;
+  color: blue;
+  top: 25%;
+  right: 5%;
+    border-radius: 50px;
+
+}
+
+.btn4 {
+  background-color: green;
+  color: yellow;
+  top: 30%;
+  right: 10%;
+      border-radius: 50px;
+
+}
+
+/* Responsive tweak for small screens */
+@media (max-width: 768px) {
+  .custom-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -233,9 +306,23 @@
       </div>
 
       <!-- About Us Section -->
+
+
       <div class="aboutUssec">
         <h2 class="fontSizeOfAboutUsHead">About Us</h2>
       </div>
+
+
+
+             <!-- Inside zoom-container (add this before .aboutUssec) -->
+      <div class="button-wrapper">
+        <button class="custom-btn btn-left btn4">Who We Are</button>
+        <button class="custom-btn btn-left btn3">Services</button>
+        <button class="custom-btn btn-right btn2">Our Projects</button>
+        <button class="custom-btn btn-right btn1">Our Team</button>
+      </div>
+
+
 
     </div>
   </section>
@@ -316,6 +403,37 @@
         scrub: true
       }
     });
+
+
+
+    // Animate left buttons from top-left to center
+gsap.to([".btn1", ".btn2"], {
+  opacity: 1,
+  x: '50vw',
+  y: '40vh',
+  transform: "translate(-50%, -50%)",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "60% top",
+    end: "70% top",
+    scrub: true
+  }
+});
+
+// Animate right buttons from top-right to center
+gsap.to([".btn3", ".btn4"], {
+  opacity: 1,
+  x: '-50vw',
+  y: '40vh',
+  transform: "translate(50%, -50%)",
+  scrollTrigger: {
+    trigger: ".intro-section",
+    start: "60% top",
+    end: "70% top",
+    scrub: true
+  }
+});
+
 
   </script>
 
